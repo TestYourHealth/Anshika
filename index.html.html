@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>birthday</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+
+        .window {
+            position: absolute;
+            right: 550px;
+            top: 60px;
+            align-items: center;
+            width: fit-content;
+            height: auto;
+            background-color: lightgray;
+            border: 1px solid gray;
+        }
+
+        .window.active {
+            max-width: 500px;
+        }
+
+        img {
+            max-height: 400px;
+            width: 100%;
+            user-select: none;
+        }
+
+        p {
+            font-family: 'Zeyada';
+            font-size: 30px;
+            color: rgb(0, 0, 100);
+            opacity: 0.75;
+            user-select: none;
+            // filter: drop-shadow(2px 1.5px 1px rgba(0,0,105,0.9));
+        }
+
+        .title-bar {
+            background-color: gray;
+            color: white;
+            padding: 5px;
+            cursor: move;
+        }
+
+        .title-bar-controls button {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .window-body {
+            padding: 10px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 8px rgb(207, 207, 207);
+        }
+
+        button:hover {
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: inset 0 0 8px #f9f8fc;
+        }
+
+        #foot {
+            position: relative;
+            top: 10px;
+            left: 300px;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 8px #d9d4e7;
+            width: 200px;
+            height: 65px;
+            background-color: #d9d4e7;
+            animation-duration: 5s;
+        }
+
+        .button-os {
+            position: absolute;
+            width: 200px;
+            height: 65px;
+            top: 0;
+            left: 600px;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: #f9f8fc;
+            border: 2.5px solid #0e172c;
+            transition: background-color 2.2s;
+            transition-duration: 3s;
+            transition: 1.5s;
+        }
+
+        .button-os:hover {
+            position: absolute;
+            top: 30px;
+            background-color: #fec7d7;
+        }
+
+        .button-os a {
+            font-size: 20px;
+            display: block;
+            text-decoration: none;
+            color: #0e172c;
+            transition: 1.5s;
+        }
+
+        .button-os a:hover {
+            letter-spacing: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window active" style="max-width: 300px">
+        <div class="title-bar">
+            <div class="title-bar-text">A window with contents</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <img src="https://iili.io/H6EO8E7.jpg" />
+            <p>Here’s hoping your special day is blessed with all the goodness you put into the world. Happy birthday to
+                the woman with a heart bigger than anyone I know.!</p>
+        </div>
+    </div>
+
+    <div class="window active" style="max-width: 300px">
+        <div class="title-bar">
+            <div class="title-bar-text">Another window</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <img src="https://iili.io/H6VdEYB.jpg" />
+            <p>Happy birthday to the most amazing person I know! May your day be as wonderful as you are, and may you be
+                blessed with endless joy and contentment in the years to come.</p>
+        </div>
+    </div>
+
+    <body>
+        <button id="foot"><button class="button-os">
+                <a href="cake.HTML">enter</a></button></button>
+    </body>
+
+    <script>
+        var windows = document.getElementsByClassName('window');
+        var prevPosition = { x: 0, y: 0 };
+
+        function startDrag(e) {
+            e.preventDefault();
+            prevPosition.x = e.clientX;
+            prevPosition.y = e.clientY;
+            document.addEventListener('mousemove', dragWindow);
+            document.addEventListener('mouseup', stopDrag);
+        }
+
+        function dragWindow(e) {
+            var offsetX = e.clientX - prevPosition.x;
+            var offsetY = e.clientY - prevPosition.y;
+            var windowElement = this.closest('.window');
+            var left = windowElement.offsetLeft + offsetX;
+            var top = windowElement.offsetTop + offsetY;
+            windowElement.style.left = left + 'px';
+            windowElement.style.top = top + 'px';
+            prevPosition.x = e.clientX;
+            prevPosition.y = e.clientY;
+        }
+
+        function stopDrag() {
+            document.removeEventListener('mousemove', dragWindow);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+
+        function minimizeWindow() {
+            var windowElement = this.closest('.window');
+            windowElement.style.display = 'none';
+        }
+
+        function maximizeWindow() {
+            var windowElement = this.closest('.window');
+            windowElement.classList.toggle('maximized');
+        }
+
+        function closeWindow() {
+            var windowElement = this.closest('.window');
+            windowElement.remove();
+        }
+
+        for (var i = 0; i < windows.length; i++) {
+            var titleBar = windows[i].querySelector('.title-bar');
+            var minimizeButton = windows[i].querySelector('.title-bar-controls button[aria-label="Minimize"]');
+            var maximizeButton = windows[i].querySelector('.title-bar-controls button[aria-label="Maximize"]');
+            var closeButton = windows[i].querySelector('.title-bar-controls button[aria-label="Close"]');
+
+            titleBar.addEventListener('mousedown', startDrag);
+            minimizeButton.addEventListener('click', minimizeWindow);
+            maximizeButton.addEventListener('click', maximizeWindow);
+            closeButton.addEventListener('click', closeWindow);
+        }
+    </script>
+</body>
+
+</html>
