@@ -1,8 +1,4 @@
-// for music
-window.addEventListener('beforeunload', function () {
-  var audio = document.getElementById('backgroundMusic');
-  audio.pause();
-});
+
 // JavaScript code
 
 const colors = ['#ef8d22', '#feff28', '#2bd8ff', '#fc85e1'];
