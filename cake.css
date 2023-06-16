@@ -1,102 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Concert+One|Pacifico');
 
-.mobile {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    top: 50px;
-    font-size: 90px;
-    display: block;
-}
-
-h1,
-h2,
-span {
-    display: none;
-}
 
 @media screen and (min-width: 670px) {
-
     .mobile {
         display: none;
     }
-
-    h1,
-    h2,
-    span {
-        display: block;
-    }
-
-    $colors: #ef8d22, #feff28, #2bd8ff, #fc85e1;
-    $particles: 50;
-    $width: 500;
-    $height: 500;
-
-    // Create the explosion...
-    $box-shadow: (
-    );
-$box-shadow2: (
-);
-
-@for $i from 0 through $particles {
-    $box-shadow: $box-shadow,
-    random($width)-$width / 2+px random($height)-$height / 1.2+px hsl(random(360), 100, 50);
-    $box-shadow2: $box-shadow2,
-    0 0 #fff
-}
-
-@mixin keyframes ($animationName) {
-    @-webkit-keyframes #{$animationName} {
-        @content;
-    }
-
-    @-moz-keyframes #{$animationName} {
-        @content;
-    }
-
-    @-o-keyframes #{$animationName} {
-        @content;
-    }
-
-    @-ms-keyframes #{$animationName} {
-        @content;
-    }
-
-    @keyframes #{$animationName} {
-        @content;
-    }
-}
-
-@mixin animation-delay ($settings) {
-    -moz-animation-delay: $settings;
-    -webkit-animation-delay: $settings;
-    -o-animation-delay: $settings;
-    -ms-animation-delay: $settings;
-    animation-delay: $settings;
-}
-
-@mixin animation-duration ($settings) {
-    -moz-animation-duration: $settings;
-    -webkit-animation-duration: $settings;
-    -o-animation-duration: $settings;
-    -ms-animation-duration: $settings;
-    animation-duration: $settings;
-}
-
-@mixin animation ($settings) {
-    -moz-animation: $settings;
-    -webkit-animation: $settings;
-    -o-animation: $settings;
-    -ms-animation: $settings;
-    animation: $settings;
-}
-
-@mixin transform ($settings) {
-    transform: $settings;
-    -moz-transform: $settings;
-    -webkit-transform: $settings;
-    -o-transform: $settings;
-    -ms-transform: $settings;
 }
 
 body {
@@ -107,41 +15,20 @@ body {
     font-family: "Pacifico", cursive;
 }
 
-h1 {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    top: 120px;
-    font-size: 90px;
-    background: -webkit-linear-gradient(0deg, rgba(206, 173, 252, 1) 0%, rgba(163, 187, 251, 1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: 'Concert One', cursive;
-    font-weight: 400;
-    z-index: -1;
-    letter-spacing: 6px;
-}
-
-span {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    top: 70px;
-    font-size: 70px;
-}
-
 h2 {
     position: fixed;
     text-align: center;
     width: 100%;
-    top: 50px;
-    font-size: 90px;
-    background: -webkit-linear-gradient(90deg, rgba(233, 230, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    top: 120px;
+    font-size: 40px;
+    background: transparent;
+    font-family: 'Concert One', cursive;
+    font-weight: 400;
+    z-index: -1;
+    letter-spacing: 2px;
 }
 
-bokeh {
+.bokeh {
     position: fixed;
     width: 2vmin;
     height: 2vmin;
@@ -150,35 +37,7 @@ bokeh {
     animation-iteration-count: infinite;
     animation-direction: reverse;
     animation-timing-function: cubic-bezier(0.84, 0.02, 1, 1);
-
-    @for $i from 1 through 100 {
-        &:nth-child(#{$i}) {
-            $color: ceil(random() * 4);
-            background-color: nth($colors, $color);
-            $x: random() * 100vw;
-            $y: random() * 100vh;
-            transform: translate($x, $y);
-            animation-duration: random() * 3s + 2s;
-            animation-delay: random() * -5s;
-        }
-    }
 }
-
-@keyframes explosion {
-    0% {
-        opacity: 0;
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(50vw, 100vh);
-    }
-}
-
-
 
 .cake {
     position: relative;
@@ -195,7 +54,6 @@ bokeh {
         0px 4px 0px #f4f9fd,
         0px 8px 0px #dba9ff,
         0px 12px 0px #fec3b3,
-
         0px 16px 0px #f7f6fb,
         0px 20px 0px #f7f6fb,
         0px 24px 0px #f7f6fb,
@@ -204,7 +62,6 @@ bokeh {
         0px 36px 0px #fea0bb,
         0px 40px 0px #9cef9d,
         0px 44px 0px #9cef9d,
-
         0px 48px 0px #f7f6fb,
         0px 52px 0px #f7f6fb,
         0px 56px 0px #f7f6fb,
@@ -264,8 +121,7 @@ bokeh {
     margin: auto;
 
     /*   http://www.css3.info/preview/box-shadow/ */
-    box-shadow:
-        0 0 17px 7px rgba(251, 246, 190, 0.71);
+    box-shadow: 0 0 17px 7px rgba(251, 246, 190, 0.71);
     transform-origin: bottom;
     animation: flicker 1s ease-in-out alternate infinite;
 }
@@ -361,6 +217,4 @@ bokeh {
         margin-top: 30%;
         margin-left: 80%;
     }
-}
-
 }
